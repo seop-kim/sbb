@@ -27,7 +27,8 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-jdbc',
             'org.springframework.boot:spring-boot-starter-thymeleaf',
             'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect',
-            'org.springframework.boot:spring-boot-starter-web'
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-validation'
     )
 
     compileOnly 'org.projectlombok:lombok'

@@ -1,11 +1,14 @@
 package com.mysite.sbb.question;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -31,5 +34,23 @@ public class QuestionController {
         Question question = questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
+    }
+
+    // ========== 질문 생성 Form ===========
+    @GetMapping("/create")
+    public String createForm(QuestionForm questionForm) {
+        return "question_create_form";
+    }
+
+    // ========== 질문 생성 ===========
+    @PostMapping("/create")
+    public String create(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+        // TODO : Question Save
+        if (bindingResult.hasErrors()) {
+            return "question_create_form";
+        }
+        questionService.create(questionForm.getSubject(), questionForm.getContent());
+
+        return "redirect:/question/list";
     }
 }
