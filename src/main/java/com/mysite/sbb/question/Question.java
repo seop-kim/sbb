@@ -31,4 +31,19 @@ public class Question {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     List<Answer> answers;
+
+    public Question() {
+    }
+
+    /**
+     * Subject, Content other Auto
+     *
+     * @param subject
+     * @param content
+     */
+    public Question(String subject, String content) {
+        this.subject = subject;
+        this.content = content;
+        this.createDate = LocalDateTime.now();
+    }
 }
