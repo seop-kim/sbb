@@ -26,4 +26,19 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    public Answer() {
+    }
+
+    /**
+     * 답변내용과 질문 객체만 넣으면 나머지 값은 자동 할당된다.
+     *
+     * @param question
+     * @param content
+     */
+    public Answer(Question question, String content) {
+        this.content = content;
+        this.question = question;
+        this.createDate = LocalDateTime.now();
+    }
 }
