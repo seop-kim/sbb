@@ -31,6 +31,4 @@ public class Question {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     List<Answer> answers;
-
-
 }

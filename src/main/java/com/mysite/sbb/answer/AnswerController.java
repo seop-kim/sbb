@@ -21,7 +21,7 @@ public class AnswerController {
     public String createAnswer(@PathVariable Integer id, @RequestParam String content) {
         Question question = questionService.getQuestion(id);
 
-        // TODO : Answer save
+        // TODO : Answer Save
         answerService.create(question, content);
 
         return "redirect:/question/detail/%s".formatted(id);
