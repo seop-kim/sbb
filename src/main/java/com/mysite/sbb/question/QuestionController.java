@@ -14,7 +14,7 @@ public class QuestionController {
     // ========== Question 목록 ==========
     @GetMapping("/question/list")
     public String list(Model model) {
-        // Question 전체 조회를 하여 model에 저장하여 front로 전달한다.
+        // Question service에 question 목록을 요청한다.
         List<Question> questions = questionService.list();
         model.addAttribute("questions", questions);
 
