@@ -4,12 +4,21 @@ import com.mysite.sbb.exception.DataNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class QuestionService {
     private final QuestionRepository questionRepository;
+    // ========== Paging Question 목록 ==========
+    public Page<Question> getList(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        return questionRepository.findAll(pageable);
+    }
+
 
     // ========== Question 목록 ==========
     public List<Question> list() {
