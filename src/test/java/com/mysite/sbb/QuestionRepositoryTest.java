@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.mysite.sbb.question.model.Question;
 import com.mysite.sbb.question.repository.QuestionRepository;
+import com.mysite.sbb.user.service.UserService;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -18,18 +19,25 @@ class QuestionRepositoryTest {
     @Autowired
     private QuestionRepository questionRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Test
     void saveTest() {
-        Question question1 = new Question();
-        question1.setSubject("sbb가 무엇인가요?");
-        question1.setContent("sbb에 대해 알고 싶습니다.");
-        question1.setCreateDate(LocalDateTime.now());
+        Question question1 = Question.builder()
+                .subject("sbb가 무엇인가요?")
+                .content("sbb에 대해 알고 싶습니다.")
+                .author(userService.findById(1L))
+                .build();
+
         this.questionRepository.save(question1);
 
-        Question question2 = new Question();
-        question2.setSubject("스프링부트 모델 질문입니다.");
-        question2.setContent("id는 자동으로 생성되나요?");
-        question2.setCreateDate(LocalDateTime.now());
+        Question question2 = Question.builder()
+                .subject("스프링부트 모델 질문입니다.")
+                .content("id는 자동으로 생성되나요?")
+                .author(userService.findById(1L))
+                .build();
+
         this.questionRepository.save(question2);
     }
 
@@ -92,7 +100,7 @@ class QuestionRepositoryTest {
         assertTrue(opFindOne.isPresent());
 
         Question question = opFindOne.get();
-        question.setSubject("수정된 제목");
+        question.updateSubject("수정된 제목");
         this.questionRepository.save(question);
     }
 
@@ -116,9 +124,6 @@ class QuestionRepositoryTest {
         assertThat(questionRepository.count())
                 .isEqualTo(1);
     }
-
-
-
 
 
 }

@@ -7,6 +7,8 @@ import com.mysite.sbb.answer.repository.AnswerRepository;
 import com.mysite.sbb.question.model.Question;
 import com.mysite.sbb.question.repository.QuestionRepository;
 import com.mysite.sbb.question.service.QuestionService;
+import com.mysite.sbb.user.model.SiteUser;
+import com.mysite.sbb.user.service.UserService;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,15 +30,9 @@ class SbbApplicationTests {
     @Autowired
     private QuestionService questionService;
 
-
-    @Test
-    void testJpa() {
-        for (int i = 1; i <= 300; i++) {
-            String subject = "테스트 데이터입니다 : %03d".formatted(i);
-            String content = "내용무";
-            questionService.create(subject, content);
-        }
-    }
+    @Autowired
+    private UserService userService;
+    
 
     @DisplayName("[답변 등록] 답변등록 시 db에는 동일한 데이터가 저장되어야 한다.")
     @Test
@@ -49,10 +45,12 @@ class SbbApplicationTests {
 
         Question question = questionFindOne.get();
 
-        Answer answer = new Answer();
-        answer.setContent("네 자동으로 생성됩니다.");
-        answer.setQuestion(question);
-        answer.setCreateDate(LocalDateTime.now());
+        Answer answer = Answer.builder()
+                .author(userService.findById(1L))
+                .content("네 자동으로 생성됩니다.")
+                .question(question)
+                .build();
+
         Answer saveAnswer = answerRepository.save(answer);
 
         assertThat(answer)
@@ -78,7 +76,7 @@ class SbbApplicationTests {
     void questionInAnswersFindTest() {
         // Transactional 어노테이션을 사용하지 않을 경우 첫번째 question 을 조회한 뒤 DB세션이 종료되어 뒤에 코드에서 오류가 발생한다.
 
-        Optional<Question> questionFindOne = questionRepository.findById(3);
+        Optional<Question> questionFindOne = questionRepository.findById(1);
         assertThat(questionFindOne)
                 .isPresent();
 
