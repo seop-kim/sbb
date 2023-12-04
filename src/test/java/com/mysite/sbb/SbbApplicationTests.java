@@ -2,11 +2,11 @@ package com.mysite.sbb;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.mysite.sbb.answer.Answer;
-import com.mysite.sbb.answer.AnswerRepository;
-import com.mysite.sbb.question.Question;
-import com.mysite.sbb.question.QuestionRepository;
-import com.mysite.sbb.question.QuestionService;
+import com.mysite.sbb.answer.model.Answer;
+import com.mysite.sbb.answer.repository.AnswerRepository;
+import com.mysite.sbb.question.model.Question;
+import com.mysite.sbb.question.repository.QuestionRepository;
+import com.mysite.sbb.question.service.QuestionService;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;

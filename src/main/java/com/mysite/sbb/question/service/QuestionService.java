@@ -1,6 +1,8 @@
-package com.mysite.sbb.question;
+package com.mysite.sbb.question.service;
 
 import com.mysite.sbb.exception.DataNotFoundException;
+import com.mysite.sbb.question.model.Question;
+import com.mysite.sbb.question.repository.QuestionRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

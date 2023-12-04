@@ -1,7 +1,9 @@
-package com.mysite.sbb.answer;
+package com.mysite.sbb.answer.controller;
 
-import com.mysite.sbb.question.Question;
-import com.mysite.sbb.question.QuestionService;
+import com.mysite.sbb.answer.util.AnswerForm;
+import com.mysite.sbb.answer.service.AnswerService;
+import com.mysite.sbb.question.model.Question;
+import com.mysite.sbb.question.service.QuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

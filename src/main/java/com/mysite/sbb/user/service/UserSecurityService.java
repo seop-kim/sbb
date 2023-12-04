@@ -1,5 +1,8 @@
-package com.mysite.sbb.user;
+package com.mysite.sbb.user.service;
 
+import com.mysite.sbb.user.model.SiteUser;
+import com.mysite.sbb.user.repository.UserRepository;
+import com.mysite.sbb.user.model.UserRole;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

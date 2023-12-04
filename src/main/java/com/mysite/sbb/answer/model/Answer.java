@@ -1,7 +1,7 @@
-package com.mysite.sbb.answer;
+package com.mysite.sbb.answer.model;
 
-import com.mysite.sbb.question.Question;
-import com.mysite.sbb.user.SiteUser;
+import com.mysite.sbb.question.model.Question;
+import com.mysite.sbb.user.model.SiteUser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

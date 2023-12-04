@@ -1,7 +1,7 @@
-package com.mysite.sbb.question;
+package com.mysite.sbb.question.model;
 
-import com.mysite.sbb.answer.Answer;
-import com.mysite.sbb.user.SiteUser;
+import com.mysite.sbb.answer.model.Answer;
+import com.mysite.sbb.user.model.SiteUser;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
