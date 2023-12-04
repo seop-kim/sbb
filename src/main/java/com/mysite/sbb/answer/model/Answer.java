@@ -9,11 +9,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 @Entity
 public class Answer {
     @Id
@@ -40,9 +40,11 @@ public class Answer {
      * @param question
      * @param content
      */
-    public Answer(Question question, String content) {
+    @Builder
+    public Answer(Question question, String content, SiteUser author) {
         this.content = content;
         this.question = question;
+        this.author = author;
         this.createDate = LocalDateTime.now();
     }
 }

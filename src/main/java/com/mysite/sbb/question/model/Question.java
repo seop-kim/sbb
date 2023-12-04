@@ -12,11 +12,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 @Entity
 public class Question {
     @Id
@@ -46,9 +46,15 @@ public class Question {
      * @param subject
      * @param content
      */
-    public Question(String subject, String content) {
+    @Builder
+    public Question(String subject, String content,SiteUser author) {
         this.subject = subject;
         this.content = content;
+        this.author = author;
         this.createDate = LocalDateTime.now();
+    }
+
+    public void updateSubject(String updateSubject) {
+        this.subject = updateSubject;
     }
 }
