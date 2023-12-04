@@ -3,6 +3,7 @@ package com.mysite.sbb.question.service;
 import com.mysite.sbb.exception.DataNotFoundException;
 import com.mysite.sbb.question.model.Question;
 import com.mysite.sbb.question.repository.QuestionRepository;
+import com.mysite.sbb.user.model.SiteUser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,9 +44,16 @@ public class QuestionService {
     }
 
     // ========== 질문 생성 ===========
-    public void create(String subject, String content) {
-        Question question = new Question(subject, content);
+    public void create(String subject, String content, SiteUser user) {
+        Question question = Question.builder()
+                .subject(subject)
+                .content(content)
+                .author(user)
+                .build();
         questionRepository.save(question);
     }
 
+    public long count() {
+        return questionRepository.count();
+    }
 }
